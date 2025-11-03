@@ -163,18 +163,29 @@
             transform: translateY(1px);
         }
         
-        /* Style for the INSET icon circle (as seen in image) */
+        /* Style for the INSET icon circle (Contact Section) */
         .icon-inset-circle {
             background-color: #2c2c32; /* Match the background */
-            /* Using skeu-inset box-shadow for the pressed effect (ALWAYS VISIBLE) */
             box-shadow: theme('boxShadow.skeu-inset');
-            width: 112px; /* Increased size: 80px -> 112px (h-28 w-28) */
-            height: 112px;
+            padding: 1.5rem; /* Standardized for Contact section icons */
+            width: auto; 
+            height: auto; 
             display: inline-flex;
             align-items: center;
             justify-content: center;
             border-radius: 9999px; /* full circle */
             transition: all 0.3s ease-in-out;
+        }
+        
+        /* Standardized Icon Wrapper (Accordion, Services, Practice Areas) */
+        .standard-icon-wrapper {
+            padding: 1.25rem; /* p-5 equivalent */
+            width: auto;
+            height: auto;
+            border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
         
         /* Removed Organic Shape Class */
@@ -203,6 +214,37 @@
             max-height: 0; /* Default closed state */
         }
         
+        /* --- Mobile Disclaimer Fixes --- */
+        @media (max-width: 767px) {
+            #disclaimer-modal .skeu-element {
+                /* Make the modal card take full screen height/width minus margins */
+                height: 96%;
+                width: 96%;
+                margin: 2%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                padding: 1rem; /* Adjust padding for mobile space */
+            }
+            #disclaimer-modal #disclaimer-content {
+                /* Allow disclaimer text to scroll and take up available space */
+                overflow-y: auto;
+                flex-grow: 1; /* Allows it to fill the vertical space */
+                padding: 1rem 0;
+            }
+            #disclaimer-modal #modal-footer {
+                /* Fixed button bar at the bottom of the card */
+                position: sticky;
+                bottom: 0;
+                background-color: #2c2c32;
+                padding-top: 1rem;
+            }
+            #disclaimer-modal #modal-footer .skeu-button {
+                /* Make buttons full width on small screens */
+                width: 100%; 
+            }
+        }
+
     </style>
 </head>
 
@@ -210,12 +252,21 @@
 
     <!-- DISCLAIMER MODAL (Full Screen) -->
     <div id="disclaimer-modal" class="fade-in">
-        <div class="skeu-element max-w-2xl mx-4 p-8 md:p-12 rounded-3xl text-center"> <!-- Removed modal-float class -->
-            <h2 class="font-serif text-3xl font-bold text-gold-gradient mb-6">DISCLAIMER</h2>
-            <p class="text-sm md:text-base text-neutral-100/90 text-left leading-relaxed mb-8">
-                The Bar Council of India does not permit advertisement or solicitation by advocates in any form or manner. By accessing this website, savejuris.com, you acknowledge and confirm that you are seeking information relating to SAVe Juris of your own accord and that there has been no form of solicitation, advertisement or inducement by SAVe Juris or its members. The content of this website is for informational purposes only and should not be interpreted as soliciting or advertisement. No material/information provided on this website should be construed as legal advice. Any information obtained or downloaded by you from the website does not lead to the creation of the client – attorney relationship between you and the firm. SAVe Juris shall not be liable for consequences of any action taken by relying on the material/information provided on this website. The contents of this website are the intellectual property of SAVe Juris.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+        <!-- Modal Card: Uses flex to manage scrollable content and fixed footer on mobile -->
+        <div class="skeu-element max-w-2xl mx-4 p-8 md:p-12 rounded-3xl text-center"> 
+            
+            <!-- Header -->
+            <h2 class="font-serif text-3xl font-bold text-gold-gradient mb-6 md:mb-8">DISCLAIMER</h2>
+            
+            <!-- Scrollable Content -->
+            <div id="disclaimer-content" class="md:max-h-[70vh] md:overflow-y-auto px-1 md:px-0">
+                <p class="text-sm md:text-base text-neutral-100/90 text-left leading-relaxed mb-4">
+                    The Bar Council of India does not permit advertisement or solicitation by advocates in any form or manner. By accessing this website, savejuris.com, you acknowledge and confirm that you are seeking information relating to SAVe Juris of your own accord and that there has been no form of solicitation, advertisement or inducement by SAVe Juris or its members. The content of this website is for informational purposes only and should not be interpreted as soliciting or advertisement. No material/information provided on this website should be construed as legal advice. Any information obtained or downloaded by you from the website does not lead to the creation of the client – attorney relationship between you and the firm. SAVe Juris shall not be liable for consequences of any action taken by relying on the material/information provided on this website. The contents of this website are the intellectual property of SAVe Juris.
+                </p>
+            </div>
+            
+            <!-- Fixed Button Bar (Footer) -->
+            <div id="modal-footer" class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 mt-8">
                 <button id="agree-btn" class="skeu-button text-goldenrod font-semibold py-3 px-8 rounded-full text-lg">
                     I Agree
                 </button>
@@ -223,6 +274,7 @@
                     I Disagree
                 </button>
             </div>
+
         </div>
     </div>
     <!-- END DISCLAIMER MODAL -->
@@ -324,9 +376,9 @@
                         <div class="skeu-element rounded-3xl p-1">
                             <button id="accordion-btn-1" class="accordion-button w-full flex justify-between items-center text-left p-6 font-semibold text-neutral-100 transition duration-300">
                                 <span class="flex items-center space-x-4">
-                                    <!-- Floating Icon Wrapper -->
-                                    <div class="skeu-element inline-flex p-3 rounded-full icon-float-wrapper">
-                                        <!-- Icon: Building -->
+                                    <!-- Floating Icon Wrapper - STANDARDIZED SIZE -->
+                                    <div class="skeu-element inline-flex standard-icon-wrapper icon-float-wrapper">
+                                        <!-- Icon: Building - STANDARDIZED SIZE -->
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-7 h-7 text-goldenrod">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 21.75l-8.25-4.5V4.5L12 9l8.25-4.5v12.75l-8.25 4.5z" />
                                         </svg>
@@ -348,8 +400,8 @@
                         <div class="skeu-element rounded-3xl p-1">
                             <button id="accordion-btn-2" class="accordion-button w-full flex justify-between items-center text-left p-6 font-semibold text-neutral-100 transition duration-300">
                                 <span class="flex items-center space-x-4">
-                                    <!-- Floating Icon Wrapper -->
-                                    <div class="skeu-element inline-flex p-3 rounded-full icon-float-wrapper">
+                                    <!-- Floating Icon Wrapper - STANDARDIZED SIZE -->
+                                    <div class="skeu-element inline-flex standard-icon-wrapper icon-float-wrapper">
                                         <!-- Icon: People -->
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-7 h-7 text-goldenrod">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.5L12 21l-3-1.5M4.5 9.75l7.5-3.75 7.5 3.75-7.5 3.75-7.5-3.75z" />
@@ -374,8 +426,8 @@
                         <div class="skeu-element rounded-3xl p-1">
                             <button id="accordion-btn-3" class="accordion-button w-full flex justify-between items-center text-left p-6 font-semibold text-neutral-100 transition duration-300">
                                 <span class="flex items-center space-x-4">
-                                    <!-- Floating Icon Wrapper -->
-                                    <div class="skeu-element inline-flex p-3 rounded-full icon-float-wrapper">
+                                    <!-- Floating Icon Wrapper - STANDARDIZED SIZE -->
+                                    <div class="skeu-element inline-flex standard-icon-wrapper icon-float-wrapper">
                                         <!-- Icon: Eye/Vision -->
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-7 h-7 text-goldenrod">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.575 3.01 9.963 7.183a1.012 1.012 0 010 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.575-3.01-9.963-7.183z" />
@@ -417,9 +469,9 @@
                         
                         <!-- Card 1: Civil & Commercial -->
                         <div class="skeu-element rounded-3xl p-6 md:p-8 text-center fade-in" style="transition-delay: 200ms;">
-                            <div class="skeu-element inline-flex p-5 rounded-full mb-6 icon-float-wrapper">
+                            <div class="skeu-element inline-flex standard-icon-wrapper rounded-full mb-6 icon-float-wrapper">
                                 <!-- Icon: Scale -->
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-goldenrod">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-goldenrod">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18m-9-9h18" />
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 3l9 4.5M12 3l-9 4.5m9 13.5l9-4.5m-9 4.5l-9-4.5" />
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 8.25L12 12.75l8.25-4.5" />
@@ -435,9 +487,9 @@
 
                         <!-- Card 2: Real Estate -->
                         <div class="skeu-element rounded-3xl p-6 md:p-8 text-center fade-in" style="transition-delay: 250ms;">
-                            <div class="skeu-element inline-flex p-5 rounded-full mb-6 icon-float-wrapper">
+                            <div class="skeu-element inline-flex standard-icon-wrapper rounded-full mb-6 icon-float-wrapper">
                                 <!-- Icon: Building Office -->
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-goldenrod">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-goldenrod">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21V9.75M3.75 21h1.5M3.75 21H1.5M17.25 21H5.25" />
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 18H5.25V5.25a1.5 1.5 0 011.5-1.5h1.5a1.5 1.5 0 011.5 1.5V18zM17.25 18V5.25a1.5 1.5 0 00-1.5-1.5h-1.5a1.5 1.5 0 00-1.5 1.5V18H17.25z" />
                                 </svg>
@@ -450,9 +502,9 @@
                         
                         <!-- Card 3: Will & Trust -->
                         <div class="skeu-element rounded-3xl p-6 md:p-8 text-center fade-in" style="transition-delay: 300ms;">
-                            <div class="skeu-element inline-flex p-5 rounded-full mb-6 icon-float-wrapper">
+                            <div class="skeu-element inline-flex standard-icon-wrapper rounded-full mb-6 icon-float-wrapper">
                                 <!-- Icon: Archive Box -->
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-goldenrod">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-goldenrod">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.75l-4.5 4.5m0 0l-4.5-4.5m4.5 4.5V3m2.25 4.5h-9" />
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12a9.75 9.75 0 1019.5 0 9.75 9.75 0 00-19.5 0z" />
                                 </svg>
@@ -465,9 +517,9 @@
 
                         <!-- Card 4: Contracts -->
                         <div class="skeu-element rounded-3xl p-6 md:p-8 text-center fade-in" style="transition-delay: 350ms;">
-                            <div class="skeu-element inline-flex p-5 rounded-full mb-6 icon-float-wrapper">
+                            <div class="skeu-element inline-flex standard-icon-wrapper rounded-full mb-6 icon-float-wrapper">
                                 <!-- Icon: Clipboard Document Check -->
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-goldenrod">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-goldenrod">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 3a9 9 0 019 9 9 9 0 01-9 9 9 9 0 01-9-9 9 9 0 019-9z" />
                                 </svg>
@@ -480,9 +532,9 @@
                         
                         <!-- Card 5: Business Setup Advisory -->
                         <div class="skeu-element rounded-3xl p-6 md:p-8 text-center fade-in" style="transition-delay: 400ms;">
-                            <div class="skeu-element inline-flex p-5 rounded-full mb-6 icon-float-wrapper">
+                            <div class="skeu-element inline-flex standard-icon-wrapper rounded-full mb-6 icon-float-wrapper">
                                 <!-- Icon: Rocket -->
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-goldenrod">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-goldenrod">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12a7.5 7.5 0 01-7.5 7.5c-4.142 0-7.5-3.358-7.5-7.5S7.858 4.5 12 4.5c4.142 0 7.5 3.358 7.5 7.5z" />
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M10.125 12h3.75m-3.75 0V8.25m0 3.75v3.75m3.75-3.75V8.25m0 3.75v3.75M12 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
@@ -497,9 +549,9 @@
                         
                         <!-- Card 6: Dispute Resolution -->
                         <div class="skeu-element rounded-3xl p-6 md:p-8 text-center fade-in" style="transition-delay: 450ms;">
-                            <div class="skeu-element inline-flex p-5 rounded-full mb-6 icon-float-wrapper">
+                            <div class="skeu-element inline-flex standard-icon-wrapper rounded-full mb-6 icon-float-wrapper">
                                 <!-- Icon: Hand Raised (represents mediation) -->
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-goldenrod">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-goldenrod">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1112 3a9 9 0 019 9z" />
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79a9 9 0 00-9-9" />
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 01-9-9" />
@@ -516,9 +568,9 @@
 
                         <!-- Card 7: Intellectual Property -->
                         <div class="skeu-element rounded-3xl p-6 md:p-8 text-center fade-in" style="transition-delay: 500ms;">
-                            <div class="skeu-element inline-flex p-5 rounded-full mb-6 icon-float-wrapper">
+                            <div class="skeu-element inline-flex standard-icon-wrapper rounded-full mb-6 icon-float-wrapper">
                                 <!-- Icon: Finger Print (for IP identification) -->
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-goldenrod">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-goldenrod">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6a2.25 2.25 0 00-2.25-2.25H6a2.25 2.25 0 00-2.25 2.25v7.5A2.25 2.25 0 006 16.5h3.75M16.5 10.5h4.125c.571 0 1.05.479 1.05 1.05v3.75a1.05 1.05 0 01-1.05 1.05h-4.125M16.5 10.5V1.5m0 9v9m0-9h-9" />
                                 </svg>
                             </div>
@@ -530,9 +582,9 @@
                         
                         <!-- Card 8: Data Privacy & Data Protection -->
                         <div class="skeu-element rounded-3xl p-6 md:p-8 text-center fade-in" style="transition-delay: 550ms;">
-                            <div class="skeu-element inline-flex p-5 rounded-full mb-6 icon-float-wrapper">
+                            <div class="skeu-element inline-flex standard-icon-wrapper rounded-full mb-6 icon-float-wrapper">
                                 <!-- Icon: Shield Check (for protection) -->
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-goldenrod">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-goldenrod">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75a1.5 1.5 0 011.5-1.5h16.5a1.5 1.5 0 011.5 1.5v9a1.5 1.5 0 01-1.5 1.5H3.75a1.5 1.5 0 01-1.5-1.5V6.75z" />
                                 </svg>
@@ -560,9 +612,9 @@
 
                         <!-- Service 1: Litigation & Court Representation -->
                         <div class="skeu-element rounded-3xl p-6 md:p-8 text-center fade-in" style="transition-delay: 200ms;">
-                            <div class="skeu-element inline-flex p-5 rounded-full mb-6 icon-float-wrapper">
+                            <div class="skeu-element inline-flex standard-icon-wrapper rounded-full mb-6 icon-float-wrapper">
                                 <!-- Icon: Gavel (Hammer) -->
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-goldenrod">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-goldenrod">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l-2.25 2.25m0 0l-2.25-2.25m2.25 2.25V9m-3 3h6" />
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 100-18 9 9 0 000 18z" />
@@ -576,9 +628,9 @@
 
                         <!-- Service 2: Advisory & Legal Consultation -->
                         <div class="skeu-element rounded-3xl p-6 md:p-8 text-center fade-in" style="transition-delay: 250ms;">
-                            <div class="skeu-element inline-flex p-5 rounded-full mb-6 icon-float-wrapper">
+                            <div class="skeu-element inline-flex standard-icon-wrapper rounded-full mb-6 icon-float-wrapper">
                                 <!-- Icon: Chat Bubble / Advice -->
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-goldenrod">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-goldenrod">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm1.25-.75h.008v.008h-.008V9zm1.25.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm1.25-.75h.008v.008h-.008V9zm1.25.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm1.25-.75h.008v.008h-.008V9z" />
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 100-18 9 9 0 000 18z" />
                                 </svg>
@@ -591,9 +643,9 @@
 
                         <!-- Service 3: Drafting & Legal Documentation -->
                         <div class="skeu-element rounded-3xl p-6 md:p-8 text-center fade-in" style="transition-delay: 300ms;">
-                            <div class="skeu-element inline-flex p-5 rounded-full mb-6 icon-float-wrapper">
+                            <div class="skeu-element inline-flex standard-icon-wrapper rounded-full mb-6 icon-float-wrapper">
                                 <!-- Icon: Document Text -->
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-goldenrod">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-goldenrod">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.75a1.5 1.5 0 00-1.5-1.5H6a1.5 1.5 0 00-1.5 1.5v2.75M19.5 14.25H4.5M19.5 14.25V18a1.5 1.5 0 01-1.5 1.5H6a1.5 1.5 0 01-1.5-1.5v-3.75m7.5 3.75h3.75m-3.75 0V8.25m0 3.75v3.75m-3.75-3.75V8.25m0 3.75v3.75M12 1.5v3.75m0 0H8.25m3.75 0h3.75M12 22.5V18" />
                                 </svg>
                             </div>
@@ -605,9 +657,9 @@
 
                         <!-- Service 4: Compliance & Due Diligence -->
                         <div class="skeu-element rounded-3xl p-6 md:p-8 text-center fade-in" style="transition-delay: 350ms;">
-                            <div class="skeu-element inline-flex p-5 rounded-full mb-6 icon-float-wrapper">
+                            <div class="skeu-element inline-flex standard-icon-wrapper rounded-full mb-6 icon-float-wrapper">
                                 <!-- Icon: Magnifying Glass / Search -->
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-goldenrod">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-goldenrod">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                 </svg>
                             </div>
@@ -638,7 +690,7 @@
                             <!-- ICON BUTTON (Now always showing the inset effect) -->
                             <div class="icon-inset-circle mb-4">
                                 <!-- Icon: Map Pin (w-14 h-14) -->
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-14 h-14 text-goldenrod">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-goldenrod">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
                                 </svg>
@@ -655,7 +707,7 @@
                             <!-- ICON BUTTON (Now always showing the inset effect) -->
                             <div class="icon-inset-circle mb-4">
                                 <!-- Icon: Phone (w-14 h-14) -->
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-14 h-14 text-goldenrod">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-goldenrod">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-2.63C11.27 15.04 9.07 12.84 7.64 10.203l1.293-.97c.363-.271.527-.734.417-1.173L7.93 3.602a1.125 1.125 0 00-1.091-.852H5.625A2.25 2.25 0 003.375 5.25v1.5z" />
                                 </svg>
                             </div>
@@ -671,7 +723,7 @@
                             <!-- ICON BUTTON (Now always showing the inset effect) -->
                             <div class="icon-inset-circle mb-4">
                                 <!-- Icon: Mail (w-14 h-14) -->
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-14 h-14 text-goldenrod">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 text-goldenrod">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a1.5 1.5 0 01-1.5 1.5H3.75a1.5 1.5 0 01-1.5-1.5V6.75m19.5 0A2.25 2.25 0 0021 4.5H3a2.25 2.25 0 00-2.25 2.25m19.5 0l-9 6.75-9-6.75" />
                                 </svg>
                             </div>
