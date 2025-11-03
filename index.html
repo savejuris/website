@@ -297,7 +297,8 @@
                     </div>
                     
                     <!-- Mobile Menu Button --><div class="md:hidden">
-                        <button id="menu-btn" class="skeu-button p-3 rounded-full text-goldenrod">
+                        <!-- ENFORCING FIXED H/W FOR PERFECT CIRCLE ON MOBILE -->
+                        <button id="menu-btn" class="skeu-button p-2.5 h-10 w-10 rounded-full text-goldenrod flex items-center justify-center">
                             <!-- Heroicon: Menu --><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                             </svg>
@@ -343,7 +344,7 @@
                     
                     <!-- Skeuomorphic Graphic (e.g., Logo) --><div class="flex justify-center items-center fade-in cursor-pointer" style="transition-delay: 300ms;">
                         
-                        <a href="#contact" class="skeu-button-round">
+                        <a href="#about" class="skeu-button-round"> <!-- CHANGED href to #about -->
                             <div class="skeu-element p-12 rounded-full btn-float">
                                 <div class="skeu-element p-12 rounded-full btn-float">
                                     <!-- Custom Logo --><img src="https://github.com/savejuris/draftsite123/blob/main/SAVe%20LOGO1.png?raw=true" 
@@ -872,12 +873,14 @@
 
                 closeBtn.addEventListener('click', () => {
                     mobileMenu.classList.add('hidden');
+                    document.body.style.overflow = 'auto'; // Re-enable scrolling on close
                 });
                 
                 // Close menu when a link is clicked
                 mobileLinks.forEach(link => {
                     link.addEventListener('click', () => {
                         mobileMenu.classList.add('hidden');
+                        document.body.style.overflow = 'auto'; // Re-enable scrolling on link click
                     });
                 });
             }
